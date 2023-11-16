@@ -22,7 +22,7 @@ if __name__ == "__main__":
     lib.BorrowBook(150, 12, 3)
     lib.BorrowBook(162, 12, 1)
     lib.ReturnBook(120, 48)
-    #lib.FindClosestBook(9)
+    lib.FindClosestBook(9)
     lib.DeleteBook(12)
     lib.ColorFlipCount()
     lib.InsertBook(125, "Computer Organization and Design", "David A. Patterson", "Yes")
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     lib.InsertBook(210, "Machine Learning: A Probabilistic Perspective", "Kevin P. Murphy", "Yes")
     lib.BorrowBook(171, 25, 3)
     lib.BorrowBook(2, 132, 2)
-    #lib.FindClosestBook(50)
+    lib.FindClosestBook(50)
     lib.BorrowBook(18, 101, 2)
     lib.InsertBook(80, "Software Engineering: A Practitioner's Approach", "Roger S. Pressman", "Yes")
     lib.BorrowBook(210, 210, 1)
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     lib.DeleteBook(25)
     lib.DeleteBook(80)
     lib.ColorFlipCount()
-    #lib.Quit()
+    #lib.Quit()'''
 
     #Testcase 2
     '''lib.InsertBook(5, "The Secret Garden", "Jane Smith", "Yes");
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     lib.InsertBook(12, "To Kill a Mockingbird", "Sarah Lee", "Yes");
     lib.BorrowBook(101, 3, 2)
     lib.DeleteBook(12)
-    #lib.PrintBooks(1,10)
+    lib.PrintBooks(1,10)
     lib.DeleteBook(3)
     lib.DeleteBook(5)
     lib.PrintBook(5)
@@ -85,8 +85,8 @@ if __name__ == "__main__":
     lib.BorrowBook(101, 50, 2)
     lib.DeleteBook(94)
     lib.BorrowBook(105, 22, 1)
-    #lib.PrintBooks(5, 100)
-    #lib.FindClosestBook(26)
+    lib.PrintBooks(5, 100)
+    lib.FindClosestBook(26)
     lib.ReturnBook(171, 22)
     lib.BorrowBook(171, 28, 1)
     lib.DeleteBook(50)
@@ -149,7 +149,7 @@ if __name__ == "__main__":
     lib.ReturnBook(102, 2)
     lib.BorrowBook(107, 2, 1)
     lib.DeleteBook(1)
-    #lib.FindClosestBook(10)
+    lib.FindClosestBook(10)
     lib.InsertBook(11, "Book11", "Author11", "Yes")
     lib.ReturnBook(103, 3)
     lib.BorrowBook(112, 11, 1)

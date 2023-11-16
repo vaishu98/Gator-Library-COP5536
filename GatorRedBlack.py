@@ -1,4 +1,5 @@
 from heapq import heappush, heappop
+from math import inf
 
 class Node():
     def __init__(self, bookID, title, author, availability):
@@ -319,24 +320,27 @@ class RBTree():
         book = self.get_node(bookID)
         if book:
             if book.availabilityStatus=="Yes":
-                if not book.borrowedBy:
-                    book.borrowedBy=patronID
-                    return "Book "+str(bookID)+" borrowed by Patron "+str(patronID)
-                else:
-                    heappush(book.reservationHeap,(patronPriority, patronID))
-                    return "Book "+str(bookID)+" reserved by Patron "+str(patronID)
+                book.borrowedBy=patronID
+                book.availabilityStatus = "No"
+                return "Book "+str(bookID)+" borrowed by Patron "+str(patronID)
+            else:
+                heappush(book.reservationHeap,(patronPriority, patronID))
+                return "Book "+str(bookID)+" reserved by Patron "+str(patronID)
         return "Book "+str(bookID)+" is no longer available"
 
     def returnBook(self, patronID, bookID):
         book = self.get_node(bookID)
         ret = "Book "+str(bookID)+" returned by Patron "+str(patronID)
         borrower=None
+        availability = "Yes"
         if book.reservationHeap:
             allotedPatron = heappop(book.reservationHeap)
             if not borrower:
                 borrower=allotedPatron[1]
-            ret += "\nBook "+str(bookID)+" allotted to Patron "+str(allotedPatron[1])
-        book.borrowedBy=borrower
+            ret += "\n\nBook "+str(bookID)+" allotted to Patron "+str(allotedPatron[1])
+            availability = "No"
+        book.borrowedBy = borrower
+        book.availabilityStatus = availability
         return ret
 
     def deleteBook(self, book):
@@ -359,12 +363,15 @@ class RBTree():
         ret = []
         if book:
             reservations = [i[1] for i in book.reservationHeap]
+            reservations.sort(reverse=True)
             ret.append("BookID = "+str(book.bookID))
             ret.append("Title = \""+book.bookName+"\"")
             ret.append("Author = \""+book.authorName+"\"")
             ret.append("Availability = \""+book.availabilityStatus+"\"")
             ret.append("BorrowedBy = "+str(book.borrowedBy) if book.borrowedBy else "BorrowedBy = None")
             ret.append("Reservations = "+str(reservations))
+        else:
+            ret.append("Book "+str(bookID)+" not found in the library")
         return ret
 
     def printBooks( self, bookID1, bookID2):
@@ -384,6 +391,32 @@ class RBTree():
         inorderTraversal(self.root)
         return ret
 
+    def findClosestBook(self, bookID):
+        count=[0]
+        mini=[9999999999]
+        def inorderTraversal(root):
+            if root!=self.NULL:
+                inorderTraversal(root.left)
+                if abs(root.bookID - bookID) == mini[0]:
+                    count[0]=2
+                if abs(root.bookID - bookID) < mini[0]:
+                    if root.bookID - bookID <0:
+                        count[0]=-1
+                    if root.bookID - bookID == 0:
+                        count[0] = 0
+                    if root.bookID - bookID > 0:
+                        count[0] = 1
+                    mini[0] = abs(root.bookID - bookID)
+                inorderTraversal(root.right)
+            return
+        inorderTraversal(self.root)
+        ret = []
+        if count[0] == 2:
+            ret.append(self.printBook(bookID-mini[0]))
+            ret.append(self.printBook(bookID+mini[0]))
+        else:
+            ret.append(self.printBook(bookID+(mini[0]*count[0])))
+        return ret
 
 
 
