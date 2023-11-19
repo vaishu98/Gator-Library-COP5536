@@ -1,5 +1,7 @@
 from heapq import heappush, heappop
 from math import inf
+from MinHeap import MinHeap
+import time
 
 class Node():
     def __init__(self, bookID, title, author, availability):
@@ -12,7 +14,7 @@ class Node():
         self.authorName =  author
         self.availabilityStatus = availability
         self.borrowedBy = None
-        self.reservationHeap = []
+        self.reservationHeap = MinHeap(20)
 
 class RBTree():
     def __init__(self):
@@ -324,7 +326,7 @@ class RBTree():
                 book.availabilityStatus = "No"
                 return "Book "+str(bookID)+" borrowed by Patron "+str(patronID)
             else:
-                heappush(book.reservationHeap,(patronPriority, patronID))
+                book.reservationHeap.insert((patronPriority, patronID, time.time()))
                 return "Book "+str(bookID)+" reserved by Patron "+str(patronID)
         return "Book "+str(bookID)+" is no longer available"
 
@@ -334,20 +336,24 @@ class RBTree():
         borrower=None
         availability = "Yes"
         if book.reservationHeap:
-            allotedPatron = heappop(book.reservationHeap)
-            if not borrower:
-                borrower=allotedPatron[1]
-            ret += "\n\nBook "+str(bookID)+" allotted to Patron "+str(allotedPatron[1])
-            availability = "No"
+            allotedPatron = book.reservationHeap.remove()
+            if allotedPatron:
+                if not borrower:
+                    borrower=allotedPatron[1]
+                ret += "\n\nBook "+str(bookID)+" allotted to Patron "+str(allotedPatron[1])
+                availability = "No"
         book.borrowedBy = borrower
         book.availabilityStatus = availability
+        heapReservations = book.reservationHeap.getValues()
         return ret
 
     def deleteBook(self, book):
         patrons = []
         cancelled=""
-        while book.reservationHeap:
-            patrons.append(str(heappop(book.reservationHeap)[1]))
+        heapReservations = book.reservationHeap.getValues()
+        for i in range(len(heapReservations)):
+            if heapReservations[i]:
+                patrons.append(str(heapReservations[i][1]))
         if patrons:
             patronsIDS = ", ".join(patrons)
             pronoun = "have" if len(patrons)>1 else "has"
@@ -362,7 +368,11 @@ class RBTree():
         book = self.get_node(bookID)
         ret = []
         if book:
-            reservations = [i[1] for i in book.reservationHeap]
+            reservations = []
+            heapReservations=book.reservationHeap.getValues()
+            for i in range(len(heapReservations)):
+                if heapReservations[i]:
+                    reservations.append(heapReservations[i][1])
             reservations.sort(reverse=True)
             ret.append("BookID = "+str(book.bookID))
             ret.append("Title = \""+book.bookName+"\"")

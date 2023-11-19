@@ -54,7 +54,7 @@ if __name__ == "__main__":
     lib.DeleteBook(25)
     lib.DeleteBook(80)
     lib.ColorFlipCount()
-    #lib.Quit()'''
+    #lib.Quit()
 
     #Testcase 2
     '''lib.InsertBook(5, "The Secret Garden", "Jane Smith", "Yes");
@@ -155,5 +155,44 @@ if __name__ == "__main__":
     lib.BorrowBook(112, 11, 1)
     lib.DeleteBook(11)'''
 
+    '''lib.InsertBook(1, "Book1", "Author1", "Yes")
+    lib.PrintBook(1)
+    lib.BorrowBook(101, 1, 1)
+    lib.InsertBook(2, "Book2", "Author2", "Yes")
+    lib.BorrowBook(102, 1, 2)
+    lib.PrintBooks(1, 2)
+    lib.ReturnBook(101, 1)
+    #lib.Quit()'''
 
+    '''lib.InsertBook(1, "Book1", "Author1", "Yes")
+    lib.BorrowBook(101, 1, 1)
+    lib.BorrowBook(102, 1, 2)
+    lib.BorrowBook(106, 1, 4)
+    lib.BorrowBook(505, 1, 5)
+    lib.ReturnBook(101, 1)'''
+    #lib.Quit()
 
+    '''lib.InsertBook(4, "Book4", "Author1", "Yes")
+    lib.InsertBook(2, "Book2", "Author1", "Yes")
+    lib.BorrowBook(2001, 2, 3)
+    lib.InsertBook(5, "Book5", "Author3", "Yes")
+    lib.BorrowBook(3002, 2, 1)
+    lib.PrintBook(2)
+    lib.BorrowBook(3002, 5, 1)
+    lib.BorrowBook(1003, 2, 4)
+    lib.PrintBook(4)
+    lib.BorrowBook(2010, 4, 2)
+    lib.PrintBooks(2, 5)
+    lib.BorrowBook(2010, 2, 2)
+    lib.BorrowBook(1004, 2, 4)
+    lib.ReturnBook(2001, 2)
+    lib.ReturnBook(2010, 4)
+    lib.FindClosestBook(3)
+    lib.InsertBook(3, "Book3", "Author4", "Yes")
+    lib.FindClosestBook(3)
+    lib.DeleteBook(2)
+    lib.ColorFlipCount()
+    lib.Quit()
+    lib.PrintBook(4)
+    lib.BorrowBook(2)
+    lib.ReturnBook(1003, 2)'''
