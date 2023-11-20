@@ -1,0 +1,12 @@
+Book 1 borrowed by Patron 101
+
+Book 1 reserved by Patron 102
+
+Book 1 reserved by Patron 106
+
+Book 1 reserved by Patron 505
+
+Book 1 returned by Patron 101
+
+Book 1 allotted to Patron 102
+
