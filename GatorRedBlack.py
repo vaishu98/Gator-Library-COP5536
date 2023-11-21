@@ -18,7 +18,7 @@ class Node():
         self.availabilityStatus = availability
         self.borrowedBy = None
 
-        # Reservation Heap to store the borrow requestion
+        # Reservation Heap to store the borrow requests
         self.reservationHeap = MinHeap(20)
 
 
@@ -62,7 +62,7 @@ class RBTree():
 
         traverse(self.root)
         self.colorState = {}
-        # Updating the previous colorState twith current color state
+        # Updating the previous colorState with current color state
         for i in currentColorStatus:
             self.colorState[i] = currentColorStatus[i]
 
@@ -115,7 +115,7 @@ class RBTree():
     # Function to get the maximum value in the subtree
     def maximum(self, node: Node):
         while node.right != self.NULL:
-            node = node.right           # Larger value always lies in teh right subtree
+            node = node.right           # Larger value always lies in the right subtree
         return node
 
 
@@ -251,7 +251,7 @@ class RBTree():
         v.parent = u.parent
 
     # Node deletion
-    def delete_node_helper(self, node, key):
+    def delete_node_helper(self, node: Node, key: int):
         z = self.NULL
         while node != self.NULL:
             if node.bookID == key:
@@ -293,10 +293,10 @@ class RBTree():
         return ret
 
 
-    def delete_node ( self , val ) :
+    def delete_node ( self , val: int ) :
         return self.delete_node_helper ( self.root , val )
 
-    def get_node ( self, val):
+    def get_node ( self, val: int):
         z = self.NULL
         node = self.root
         while node != self.NULL :
@@ -442,7 +442,7 @@ class RBTree():
         return ret
 
     # Function to fetch the closest book to the given bookID
-    def findClosestBook(self, bookID):
+    def findClosestBook(self, bookID: int):
 
         # Variable to store the count of closest books
         count=[0]
